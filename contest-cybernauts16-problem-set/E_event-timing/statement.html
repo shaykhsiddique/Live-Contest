@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Event Timing | Cybernauts&#39;16 National Programming Contest | Toph</title>
+		<style>
+			html,body{
+				height: 100%;
+				margin: 0;
+			}
+
+			body{
+				background: #eff3f8;
+			}
+
+			.container{
+				min-height: 100%;
+				margin-bottom: -35px;
+			}
+
+			.container:after{
+				content: "";
+				display: block;
+			}
+
+			.inner{
+				width: 850px;
+				margin:0 auto;
+				padding-top: 21.5px;
+				margin-bottom: 20px;
+			}
+
+			header{
+				display: inline-block;
+				width: 100%;
+				margin-bottom: 15px;
+			}
+
+			header .left{
+				color: #555;
+				float: left;
+				font-size: 22px;
+				font-weight: 400;
+				font-family: 'Helvetica', sans-serif;
+				margin-top: 5px;
+			}
+
+			header .right{
+				float: right;
+			}
+
+			header .right .logo{
+				height: 32px;
+			}
+
+			.portlet-like{
+				background: #fff;
+				padding: 20px;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				-ms-border-radius: 4px;
+				-o-border-radius: 4px;
+				border-radius: 4px;
+				color: #333;
+				font-family: 'Helvetica', sans-serif;
+				font-size: 1em;
+				line-height: 1.6em;
+			}
+
+			.portlet-like h2{
+				font-size: 30px;
+				font-weight: 400;
+				margin-bottom: 10px;
+			}
+
+			.portlet-like p{
+				margin: 0 0 20px 0;
+			}
+
+			.portlet-like code {
+				padding: 2px 4px;
+				font-size: 90%;
+				color: #c7254e;
+				background-color: #f9f2f4;
+				border-radius: 4px;
+				font-family: monospace;
+			}
+
+			.portlet-like small,.portlet-like .small {
+				font-size: 85%;
+			}
+
+			.portlet-like h4 {
+				font-size: 18px;
+				font-weight: 400;
+			}
+
+			.portlet-like .table-scrollable {
+				width: 100%;
+				overflow-x: auto;
+				overflow-y: hidden;
+				margin: 10px 0 !important;
+			}
+
+			.portlet-like .table-scrollable > .table {
+				width: 100% !important;
+				margin: 0 !important;
+				margin-bottom: 0;
+				background-color: #fff;
+			}
+
+			.portlet-like .table th{
+				text-align: left;
+				border-bottom: 1px solid #F2F5F8;
+				font-size: 13px;
+			}
+
+			.portlet-like .table.table-light>tbody>tr>td.pre {
+				font-size: 1.1em;
+			}
+
+			.portlet-like .pre,
+			.portlet-like .table.table-light>tbody>tr>td.pre,
+			.portlet-like code,
+			.portlet-like code[class*=language-],
+			.portlet-like pre,
+			.portlet-like pre[class*=language-] {
+				font-family: monospace;
+				white-space: pre;
+			}
+
+			footer{
+				width: 100%;
+				color: #555;
+				text-align: center;
+				font-family: 'Helvetica', sans-serif;
+				font-size: 13px;
+				font-weight: 300;
+			}
+
+			footer a{
+				text-decoration: none;
+				color: #337ab7;
+			}
+
+			.container:after, footer{
+				height: 35px;
+			}
+
+			@media screen and (max-width: 991px) {
+				.inner{
+					width: 80%;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="inner">
+				<header>
+					<div class="left">
+						Cybernauts&#39;16 National Programming Contest
+					</div>
+					<div class="right">
+						<a target="_blank" href="https://toph.ws">
+							<img class="logo" src="data:image/png;base64,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" alt="Toph Logo"/>
+						</a>
+					</div>
+				</header>
+				<div class="portlet-like">
+					
+	<div class="portlet light problem-statement-portlet">
+		<div class="portlet-body">
+			
+			
+
+			<h2 style="margin-top: 0;">Event Timing</h2>
+			<div>
+				<span title="CPU: 2s, Memory: 512 MB, Source: 64 kB">Limits: 2s, 512 MB</span>
+			</div>
+			<br>
+
+			<div><p>Bob is making a new application for Android phones. Front-end of his app has a button like this:</p>
+
+<p><img src="data:;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB1CAYAAABj0+5IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAMEElEQVR4nO2df0wc153AP6DzmmC6iYWSgwW5iYnRVAkF6mQbm8BhmjjYqdasf24shbWITK1Yi2zAqlZRDnz/7Emw5C7IpwqU6DbpUbCpFhCt91JsKDagbMiZ4EaZJsF1EGZpI9R2YrgFbOb+2OWXYwixyfnHex9ppN15bx7fnc+8HzP72Beh67qORCz0Rbh27Zre2tqq2+12PTk5WY+JidEBud2FW0xMjJ6cnKzb7Xa9tbVVv3bt2mJadV3X9ZtKb29v11NTU+/4h5HbrW2pqal6e3v7otIj5jfvuq5TVVXFsWPH0HWd9PR09u3bx+bNm4mPj2fNmjVI7j7GxsYIBAJ0d3fT0NDAhQsXiIyMpKKigqNHjxIREbEg/wLpbreb0tJSoqOjcbvdWCyWrx0gubvRdZ3m5mZKS0sZHx/H7XZTXFy8IM+s9I6ODnJycnjggQfwer2kpKTckaAlK8PFixexWq0Eg0HOnDlDdnb2bFokwPXr1zly5Ai6rlNZWSmF3wekpKRQWVnJ9PQ0R48eZXp6ejYtEsDn8/HRRx+Rnp7Ojh077ligkpVlx44dpKen09fXx+nTp2f3RwKcOnUKgH379sk+/D4iIiKCvXv3AtDY2Di7PxKgp6cHgM2bN9+B0CTfJRkZGQB0d3fP7osEGB4eBiA+Pv4OhCX5LomLiwPmHENY+tWrVwHkffh9SExMDDDnGMLSJWIhpQuIlC4gUrqASOkCIqULiJQuIFK6gEjpAiKlC4iULiBSuoBI6QIipQvIP9zW0cEAbe918bfJNaRv3UaScWGyNtDDexeuYHjkSbZmKUQtXRi9p1sZT95K1o0FffvA6G17j8vjYJi/e9VDpGVkse52i7/HidB1XZ+ZIjX/i/ZlMdpGTko+KmB98xwndifNSwxSd3g9pV4g0cGHfidLT9EYxWVKobrwHYbLn/t2cdysLHMK1UM3SzPzi3P1WJKWvgTvJvrrnPxrbwrVVfuJvYXjTSYTEJoeDbfbvK8yEBd+6f3tWbT5adoF2rzh148bWA4GBZTVy8v7jWXFQGLhW6iXVFRVRVUv0vKLEhLxc+j1hoWx3uVMBt6n43yAVStU3m336eOAYlbA9yu6AnP7A13/jW9eppDKID11bvbnmDCZTJjMeZTXti0iYJBaZwF5ecV0js4c6yLPHDo2r6CctoGl1cWsXoMxyojRaMRojOUpy2EOmoHPhxkDCA7gKT+M2RQqM2d/MXU9g0CA2uL9FJQ3zostSIurgLxiD8NqCwV5Bbg9tRTnmTGZTOx3eujtPT373pznpGd0LpbR/pa5tJwCqlv6Z1KocxbgrG2ktrwgdF5MObhbVCBUy191qzDkJr/AhRpclpYlWZGBXFrm85hRaW1Xw3uCtLfWgNmGLRtmztxozwl2lbr5/NFCKitdFD6pUVOWz4nOeWeHVUAA9/5nKPP4SCsoJCsWOt0F7CqtZvjJQo4fd6D5asjPzKctwOIYFtYNTW3lN37g6Q2sJUhjSSbOGi9PO45T6Soh7vN6SncV0amtZS2f46v5JX0zoWl+3q724Wctq//yGT6/D7ezjEvrrRRazXR4nFgsr1DPszgKrQz5Pexy1KIBWr+HlNxD1Psfp8R1nGeNPlyHciluHAidl098eMqKKPstOEocZCequA/l0zIIhhgTjysAZhL+0cDk5G2pAm53IBdmhA28mAtlJ3/Hv+xXiNX8nPSC1bWdH/y+fjbflT9dAcVB49tO1gHsTKZv/S7e/+BjyHoilGniD7gP78LdASVvnaNkWxJoPVS5O1AK3+FsuL8/+MIGzM8UUdfay3MHn/p6UEZQ3a+Rdy48atOG8auhTr7wp+lEMcZf/5pItvPfOeHYBMALCV+Rkt/J5FQUW/a8DPUuTncNkGVJYrDrLH7AuScD+AyA7JJ66kqyINjLp14LHeYSPmwqIR7Y8KWXok80xtB479+cgI2zw1UoAPafkpC3Efd/NPHa7gNMAiTaOdvpQokC7WkDis3Nx58GsFgcFH9xho53M3G7Sr5hMLw8VkT6uOFRcvJslB16F/+oA7P/LH4SeWvrEwx55/L9cH8V5xJbOOVycumzL/jA18EQYA5fvYY4UGvKCLUXDg5uCw0MRz/uxg8kfuql3HmGCQA0hoCYK39bPDAljoT1a2ECSEjAmradLXsK2L1pHQAH65p5rK6R8uJf8umlT+jwq4AZAxC76XlsuPA0vY/LksT51hrAxvObYiE0Y5yNm8MXatRjbFJgJHPz7GA1Yb0ZPgADYwxfBuijxulkNcBq+MIPJH4V6mY0UKzbUMJGjU88Hbo4wsObqclQUzkGd490JqdIyt6OQj2/a+9lrLsGlBIy4tfgmZet05WHrdoPKFhtWbzs/D7vuuZyTI4DiWZyH9fwdVTjatyLa3cSTIXSh0b+Fy0OJiYAVlNot/O9Hz1y85g0UF50cKJk0yJBqzhNOXiARHMuP/mxFWfaGVw1M+kKeQ4z9dVt9Aw+RpsXFEceCjDT4k9OzbW1k+HzsCAAgOCXDKlAopGJCS0cO3y/sBD7xPf4y82GJavgu7yrXBHp2uQUGJ/lpWwoK7JQD+Qefx4j4ZMBwCgfve8HsxO1yRH6UMFOzrg8c32vBonWn/O28xGKTZl4il5n25Y6zI+E6o/11XKqdq8LlzdAdfEJoqKXmLa9QMJCgur/4AFsb56jKnyrGWgZxsUnzAyTzVYrVDt5regyKuCymr/9yYlKYL0CGH+Cu8oxW1N7PeXUDW8g2Qi/v8lhi1wLK8IKPpGLImenLfxaIe+FHzJbRZkn36/S1T+A2ttC8XYbfkC78icC4VFpDFNAEq/VlwAd2P65DpQtOBTwFhVR29ZPYKAXd8FLuOrrCT700K1F+2AMiUBf93n6BwfobHSx8ZAH0Pjjx4OhPOG/q/pVUBxsVW6lcY3ln17KBr+LV90tDAQGaat1YnHW0DcRvawaPTVphKEPae1UWYHB++1LjwbiYkLXYNKW7ZgBzFYywhXSGA0YDRiIZfvPSgAvr+RmkmM5xKUfO7Bng1pfypvn/7yg3Nisw7xpU8BbSm2vAed/1WNT/JTl57Ix04LbN4S9sgXHU7fyuAKIz+CI3Yxa7yT3mUxsRV7sDjsKKmW73iZ0U7COF+1WAHLtL87216tWhTpbw6obnikseGuE0P8Z8NTBairtZnzuQ2RufIb8Mg+J1uP85xIPoYzzyk944gdAB6W2fM6PLnrIsrm9J3K3ghZAHf470Q+aWBdvBDQCgSnWxscuY5ASZHDgMuNE8/DD64hdgY5vdHCAL8fh4UeTiI0CNA0NA0ZjKJre2gIsZZd55+JZnrvF62sGLTDA8N8h+sGHw599+QS1UcZYQ6zx27c2Nz6R+/+Xfo8QHOzk3VNn+ZW7hqv2t/C7tt3pkG6ZG6WvzOj9PmTsygeUuWtAsfHr0ntX+M2QNV0AVvYLF8k9iZQuIFK6gEjpAiKlC4iULiBSuoBI6QIipQuIlC4gUrqASOkCEglzvyo4NjZ2R4ORrDwzvxQ54xjC0me+hQkElppELrkXGRkZAeYcQ1j6pk2hGaPzfylYcn/Q1dUFLPyF70iAPXv2ANDQ0IAul2m7b9B1nYaGBgB27949uz8SIDc3l9TUVC5cuEBzc/OdiVCy4jQ3N9PX10daWhrbts3N/pEL99yn9Pf3s3PnzsUX7gHIzs6moqKC8fFxrFYrTU1Nsqm/B9F1naamJnbu3Mn4+DgVFRULhMMN67Lpus4bb7zBsWPHmJ6eJj09nb1795KRkUFcXNyCYb/k7uHq1auMjIzQ1dXFyZMnZxfjq6ys5MiRI19fl0cuu3n/bWlpaUsuu/mNC+weOHBALrB7l28zC+weOHBAb21t1a9fv76o8K+ttSoRA/nsXUCkdAGR0gVEShcQKV1ApHQBkdIFREoXECldQKR0AZHSBURKFxApXUCkdAGR0gVEShcQKV1ApHQBkdIFREoXECldQKR0AZHSBURKFxApXUCkdAGR0gVEShcQKV1ApHQBkdIFREoXECldQKR0AZHSBURKFxApXUCkdAGR0gVEShcQKV1ApHQBkdIFREoXECldQKR0AZHSBURKFxApXUCkdAGR0gVEShcQKV1A/g8QlrlLayZ6/QAAAABJRU5ErkJggg==" alt=""/></p>
+
+<p>When he press the button, a process starts in the back-end. The process needs k seconds to complete. During this k seconds the button looks like this:
+<img src="data:;base64,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" alt=""/></p>
+
+<p>To check if a process is completed, Bob wrote a special checker which always runs in the background. The checker checks the progress in every d seconds starting from the moment someone pressed the button. If it sees that the process is completed, it changes the text of the button.
+<img src="data:;base64,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" alt=""/></p>
+
+<p>Suppose the user pressed the button in the pth second. Given the value of p (1&lt;=p&lt;=100), k (1&lt;=k&lt;=1000) and d (1&lt;=d&lt;=1000), can you find when the button will display “Done!” ?</p>
+</div>
+
+			<h4>Input</h4>
+			<div><p>First line will consist T(1&lt;=T&lt;=1000), denoting number of testcases. For each testcase, there are 3 space separated integers, p, k and d.</p>
+</div>
+
+			<h4>Output</h4>
+			<div><p>For each case, print the case number and the answer.</p>
+</div>
+
+			
+				<h4>Samples</h4>
+				<div class="table-scrollable table-scrollable-borderless">
+					<table class="table table-light">
+						<thead>
+							<tr>
+								<th style="width: 50%;">Input</th>
+								<th style="width: 50%;">Output</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+								<tr>
+									<td class="pre">1
+10 14 8</td>
+									<td class="pre">Case 1: 26</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<br>
+			
+
+			<div class="small"></div>
+		</div>
+	</div>
+
+				</div>
+			</div>
+		</div>
+		<footer>
+			&copy; 2016 Toph | <a target="_blank" href="https://furqansoftware.com">Furqan Software</a>
+		</footer>
+	</body>
+</html>

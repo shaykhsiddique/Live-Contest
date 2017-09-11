@@ -1,0 +1,31 @@
+4
+3 1 1
+SUB
+IUPC
+2017
+4 2 2
+SUB
+IUPC
+SUB
+IUPC
+10 1 3
+A
+B
+C
+D
+E
+F
+B
+B
+C
+E
+9 2 3
+a
+b
+b
+c
+d
+d
+c
+e
+g
